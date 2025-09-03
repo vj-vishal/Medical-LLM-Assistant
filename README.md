@@ -12,6 +12,45 @@ A Streamlit interface is also provided for interactive use.
 - **Medical PDF processing** and vector storage using **ChromaDB**
 - **Interactive UI** built with **Streamlit** for easy question-answering
 
+## 🏗️ Project Architecture
+
+This project has **three main parts**:
+
+---
+
+### **1️⃣ Fine-Tuning**
+- Fine-tunes the **LLaMA-3.2-1B model** using **LoRA** and **QLoRA** for efficiency.
+- Saves checkpoints and the final trained model in **GGUF** format for inference.
+
+**Flow:**  
+Dataset → Tokenization → LoRA Fine-Tuning → Save Model → GGUF Export
+
+---
+
+### **2️⃣ RAG (Retrieval-Augmented Generation)**
+- Processes medical PDFs.
+- Splits documents into small chunks.
+- Generates embeddings and stores them in **ChromaDB**.
+- Retrieves the **most relevant evidence** for a given question.
+
+**Flow:**  
+PDF → Split Text → Create Embeddings → Store in ChromaDB → Retrieve Evidence
+
+---
+
+### **3️⃣ Inference & Streamlit UI**
+- Takes **user questions** and **context**.
+- Retrieves **supporting evidence** from the vector database.
+- Generates a final **evidence-based answer** using the fine-tuned model.
+
+**Flow:**  
+Question + Context → Retrieve Evidence → Generate Answer → Display in Streamlit UI
+
+---
+
+### **Overall Workflow**
+Dataset / PDF → Fine-Tuning → Vector Store → RAG → Streamlit Interface → Evidence-Based Answer
+
 ### **Steps to Use**
 
 1. Upload your **medical PDF**  
@@ -47,3 +86,7 @@ A Streamlit interface is also provided for interactive use.
     ```bash
     streamlit run app/main.py
     ```
+
+## 📜 License  
+
+This project is licensed under the **Apache License 2.0**
