@@ -1,0 +1,11 @@
+torch
+transformers
+datasets
+trl
+ollama
+unsloth
+sentence-transformers
+langchain-community
+langchain-text-splitters
+chromadb
+streamlit
